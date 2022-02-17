@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="has-background-grey-lighter">
+<head>
+    <meta charset="utf-8" />
+    <title>The Brick Breaker</title>
+    <script src="{% static 'scripts/main.js' %}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+<body>
+<canvas class="has-background-white" id="myCanvas" width="650" height="320"></canvas>
+<h1 class="title has-text-centered">Instructions:</h1>
+<p class="has-text-centered">
+     Break Every Brick To Win
+     <br>Don't Lose
+     <br>Only 3 Lives Make Them Count
+</p>
+</body>
+</html>

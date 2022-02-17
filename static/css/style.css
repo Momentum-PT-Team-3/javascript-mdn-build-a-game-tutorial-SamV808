@@ -1,0 +1,12 @@
+* {  
+    padding: 0; 
+    margin: 0; 
+}
+
+canvas { 
+    background-color: rgb(255, 255, 255); 
+    display: block; 
+    margin: 0 auto;
+    background-image: url('../images/space.gif');
+    background-repeat:repeat;
+ }
