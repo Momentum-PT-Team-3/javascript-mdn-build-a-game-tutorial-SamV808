@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html class="has-background-grey-lighter">
+<html class="has-background-black-ter">
 <head>
     <meta charset="utf-8" />
     <title>The Brick Breaker</title>
@@ -8,13 +8,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 </head>
+<header>
+    <div class="has-text-centered">
+        <button class="button has-background-grey has-text-primary is-small" onclick="levelOne()">Level One (Easy)</button>
+        <button class="button has-background-grey has-text-success is-small" onclick="levelTwo()">Level Two (Medium)</button>
+        <button class="button has-background-grey has-text-warning is-small" onclick="levelThree()">Level Three (Hard)</button>
+        <button class="button has-background-grey has-text-danger is-small" onclick="levelFour()">Level Four (Expert)</button>
+    </div>
+
+</header>
+
 <body>
-<canvas class="has-background-white" id="myCanvas" width="650" height="320"></canvas>
-<h1 class="title has-text-centered">Instructions:</h1>
-<p class="has-text-centered">
+<canvas class="has-background-white" id="myCanvas" width="600" height="300"></canvas>
+<h1 class="title has-text-centered has-text-white">Instructions:</h1>
+<p class="has-text-centered has-text-white">
      Break Every Brick To Win
-     <br>Don't Lose
-     <br>Only 3 Lives Make Them Count
+     <br>Don't Lose :)
+     <br>You Only Get a Certain Amount Of Lives Make Them Count
 </p>
+
+
+<div id="container" class="has-text-centered">
+    <button id="button" class="button has-background-grey is-small" onclick="cheatCode(), listen()">Cheat</button>
+</div>
 </body>
 </html>

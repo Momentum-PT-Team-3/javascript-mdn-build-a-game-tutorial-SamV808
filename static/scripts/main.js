@@ -1,37 +1,42 @@
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
-let ballRadius = 10;
+let scaleW = (canvas.width)/1000
+let scaleH = (canvas.height)/500
+let ballRadius = 10*scaleW;
 let x = canvas.width/2;
 let y = canvas.height-30;
-let dx = 5;
-let dy = -5;
-let paddleHeight = 10;
-let paddleWidth = 75;
+let dx = 5*scaleW;
+let dy = -5*scaleH;
+let paddleHeight = 10*scaleH;
+let paddleWidth = 125* scaleW;
 let paddleX = (canvas.width-paddleWidth)/2;
 let rightPressed = false;
 let leftPressed = false;
-let brickRowCount = 7;
-let brickColumnCount = 5;
-let brickHeight = 20;
-let brickWidth = 75;
-let brickPadding = 10;
-let brickOffsetTop = 30;
-let brickOffsetLeft = 30;
+let brickRowCount = 4;
+let brickColumnCount = 4;
+let brickHeight = 20 * scaleH;
+let brickWidth = 75 * scaleW;
+let brickPadding = 10 * scaleW;
+let brickOffsetTop = 30 * scaleH;
+let brickOffsetLeft = 30 * scaleW;
 let score = 0;
-let lives = 3;
+let lives = 5;
 let my_gradient = ctx.createLinearGradient(0, 0, 0, 170);
-my_gradient.addColorStop(0, "black");
+my_gradient.addColorStop(0, "#141414");
 my_gradient.addColorStop(1, "red");
 
 
 
 let bricks = [];
-for(let c=0; c<brickColumnCount; c++) {
-    bricks[c] = [];
-    for(let r=0; r<brickRowCount; r++) {
-        bricks[c][r] = { x: 0, y: 0, status: 1 };
+function buildBricks(){
+    for(let c=0; c<brickColumnCount; c++) {
+        bricks[c] = [];
+        for(let r=0; r<brickRowCount; r++) {
+            bricks[c][r] = { x: 0, y: 0, status: 1 };
+        }
     }
 }
+buildBricks()
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -95,11 +100,12 @@ function drawPaddle() {
     ctx.closePath();
 }
 function drawBricks() {
+    brickWidth = ((1000*scaleW)-(brickOffsetLeft*2)-(brickPadding*(brickColumnCount-1)))/brickColumnCount
 for(let c=0; c<brickColumnCount; c++) {
     for(let r=0; r<brickRowCount; r++) {
     if(bricks[c][r].status == 1) {
-        let brickX = (r*(brickWidth+brickPadding))+brickOffsetLeft;
-        let brickY = (c*(brickHeight+brickPadding))+brickOffsetTop;
+        let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+        let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
         bricks[c][r].x = brickX;
         bricks[c][r].y = brickY;
         ctx.beginPath();
@@ -150,8 +156,8 @@ else if(y + dy > canvas.height-ballRadius) {
     else {
         x = canvas.width/2;
         y = canvas.height-30;
-        dx = 5;
-        dy = -5;
+        dx = 5*scaleW;
+        dy = -5*scaleH;
         paddleX = (canvas.width-paddleWidth)/2;
     }
     }
@@ -170,6 +176,62 @@ y += dy;
 requestAnimationFrame(draw);
 }
 
+function levelOne(){
+    brickRowCount = 4;
+    brickColumnCount = 4;
+    paddleWidth = 125* scaleW;
+    buildBricks()
+    resetGame()
+    lives = 5;
+}
+
+function levelTwo() {
+    
+    brickRowCount = 7;
+    brickColumnCount = 10;
+    paddleWidth = 95*scaleW;
+    buildBricks()
+    resetGame()
+    lives = 4;
+}
+
+function levelThree(){
+    brickRowCount = 8;
+    brickColumnCount = 15;
+    paddleWidth = 65*scaleW;
+    buildBricks()
+    resetGame()
+    lives = 3;
+}
+
+function levelFour(){
+    brickRowCount = 9;
+    brickColumnCount = 20;
+    paddleWidth = 55*scaleW;
+    
+    buildBricks()
+    resetGame()
+    lives = 2;
+}
+
+function resetGame(){
+    paddleX = (canvas.width-paddleWidth)/2;
+    score = 0;
+    lives = 5;
+    x = canvas.width/2;
+    y = canvas.height-30;
+}
+
+function cheatCode(){
+    paddleWidth = 300;
+}
+
+const listen = event => {
+    const p = document.createElement('p');
+    p.innerText = "YOU CHEATER. If you fail you don't deserve to have a cheat";
+    document.querySelector('#container').appendChild(p);
+  }
 
 
+        
 draw();
