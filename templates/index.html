@@ -26,10 +26,35 @@
      <br>Don't Lose :)
      <br>You Only Get a Certain Amount Of Lives Make Them Count
 </p>
-
-
+<div id="modal-js-example" class="modal">
+    <div class="modal-background"></div>
+  
+    <div class="modal-content">
+      <div class="box has-background-grey">
+        <p class="has-text-centered has-text-danger">You Shouldn't Need Help, You Created The Game</p>
+      </div>
+    </div>
+  
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+  
 <div id="container" class="has-text-centered">
     <button id="button" class="button has-background-grey is-small" onclick="cheatCode(), listen()">Cheat</button>
+</div>
+<div class="has-text-centered">
+    <button class="button js-modal-trigger has-background-grey is-small" data-target="modal-js-example">
+       Need Help?
+      </button>
+</div>
+
+<div class="box has-background-grey">
+    <p>Score Entry</p>
+    <form id="score-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ score_form.as_p }}
+        <button type="submit" class="save btn btn-seceondary">Submit</button>
+    </form>
+
 </div>
 </body>
 </html>

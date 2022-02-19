@@ -19,5 +19,6 @@ from breakout import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", views.index, name="home")
+    path("", views.index, name="home"),
+    path("api/score/new", views.ajax_create_score, name="ajax_create_score")
 ]
