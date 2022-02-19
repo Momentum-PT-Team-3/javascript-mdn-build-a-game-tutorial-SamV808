@@ -244,6 +244,16 @@ function levelFour(){
     lives = 2;
 }
 
+function levelFive(){
+    brickRowCount = 10;
+    brickColumnCount = 25;
+    paddleWidth = 55*scaleW;
+    
+    buildBricks()
+    resetGame()
+    lives = 2;
+}
+
 function resetGame(){
     paddleX = (canvas.width-paddleWidth)/2;
     score = 0;
