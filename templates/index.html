@@ -40,7 +40,7 @@
   </div>
   
 <div id="container" class="has-text-centered">
-    <button id="button" class="button has-background-grey is-small" onclick="cheatCode(), listen()">Cheat</button>
+    <button id="button" class="button has-background-grey is-small" onclick="cheatCode()">Cheat</button>
 </div>
 <div class="has-text-centered">
     <button class="button js-modal-trigger has-background-grey is-small" data-target="modal-js-example">
@@ -48,12 +48,12 @@
       </button>
 </div>
 
-<div class="box has-background-grey">
-    <p>Score Entry</p>
-    <form id="score-form" method="POST" enctype="multipart/form-data">
+<div class="box has-background-black-ter">
+    <p class="has-text-centered has-text-white">Score Entry</p>
+    <form class="has-text-centered is-hidden" id="score-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ score_form.as_p }}
-        <button type="submit" class="save btn btn-seceondary">Submit</button>
+        <button type="submit" class="button is-small save btn btn-seceondary has-text-centered">Submit</button>
     </form>
 
 </div>
