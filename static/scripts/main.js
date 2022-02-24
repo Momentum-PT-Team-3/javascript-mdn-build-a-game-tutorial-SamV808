@@ -13,7 +13,7 @@ let paddleX = (canvas.width - paddleWidth) / 2;
 let rightPressed = false;
 let leftPressed = false;
 let brickRowCount = 4;
-let brickColumnCount = 4;
+let brickColumnCount = 5;
 let brickHeight = 20 * scaleH;
 let brickWidth = 75 * scaleW;
 let brickPadding = 10 * scaleW;
@@ -35,7 +35,7 @@ scoreForm.addEventListener("submit", function (event) {
     event.preventDefault()
     console.log(event.target)
     formData = new FormData(scoreForm)
-    let score = 2
+    // let score = 2
     formData.append("score", score)
     fetch(scoreURL, {
         method: "POST",
@@ -53,6 +53,7 @@ scoreForm.addEventListener("submit", function (event) {
         .then(data => {
             console.log(data)
         })
+        document.location.reload()
 })
 
 
@@ -109,8 +110,9 @@ function collisionDetection() {
                     if (score == brickRowCount * brickColumnCount) {
                         scoreFormVisible = true
                         scoreForm.classList.remove("is-hidden")
+                        console.log(score);
                         alert("Didn't Expect You To Win! So I Guess Congrats");
-                        document.location.reload();
+                        // document.location.reload();
                     }
                 }
             }
@@ -185,8 +187,9 @@ function draw() {
             if (!lives) {
                 scoreFormVisible = true
                 scoreForm.classList.remove("is-hidden")
+                console.log(score)
                 alert("Looks Like You Failed Me");
-                document.location.reload();
+                // document.location.reload();
             }
             else {
                 x = canvas.width / 2;
@@ -212,7 +215,12 @@ function draw() {
 
     x += dx;
     y += dy;
-    requestAnimationFrame(draw);
+
+    if(!scoreFormVisible){
+        requestAnimationFrame(draw);
+    } else{
+        console.log("paused")
+    }
 }
 //================================================================================================================================================
 // Level Difficulty Setup
@@ -278,8 +286,12 @@ function cheatCode() {
 }
 let listen = event => {
     let p = document.createElement('p');
-    p.innerText = "YOU CHEATER. If you fail you don't deserve to have a cheat";
+    let p2 = document.createElement("p");
+    p.innerText = "CHEAT ACTIVATED! The paddle will now follow the balls exact movement.";
+    p2.innerText = "Note: You are still able to control the paddle with the mouse so beware!"
     document.querySelector('#container').appendChild(p);
+    document.querySelector("#container").appendChild(p2);
+    document.querySelector("#container").style.color = "yellow";
 }
 
 //========================================================================================================================================================================
