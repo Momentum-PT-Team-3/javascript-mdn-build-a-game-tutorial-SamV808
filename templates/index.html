@@ -10,11 +10,11 @@
 </head>
 <header>
     <div class="has-text-centered">
-        <button class="button has-background-grey has-text-primary is-small" onclick="levelOne()">Level One (Easy)</button>
-        <button class="button has-background-grey has-text-success is-small" onclick="levelTwo()">Level Two (Medium)</button>
-        <button class="button has-background-grey has-text-warning is-small" onclick="levelThree()">Level Three (Hard)</button>
-        <button class="button has-background-grey has-text-danger is-small" onclick="levelFour()">Level Four (Expert)</button>
-        <button class="button has-background-grey has-text-danger is-small" onclick="levelFive()">Level Four (Impossible)</button>
+        <button class="button has-background-grey has-text-primary  has-text-weight-bold is-small" onclick="levelOne()">Level One (Easy)</button>
+        <button class="button has-background-grey has-text-success has-text-weight-bold	is-small" onclick="levelTwo()">Level Two (Medium)</button>
+        <button class="button has-background-grey has-text-warning has-text-weight-bold	is-small" onclick="levelThree()">Level Three (Hard)</button>
+        <button class="button has-background-grey has-text-danger has-text-weight-bold	is-small" onclick="levelFour()">Level Four (Expert)</button>
+        <button class="button has-background-grey has-text-danger has-text-weight-bold	is-small" onclick="levelFive()">Level Four (Impossible)</button>
     </div>
 
 </header>
@@ -33,7 +33,7 @@
   
     <div class="modal-content">
       <div class="box has-background-grey">
-        <p class="has-text-centered has-text-danger">You Shouldn't Need Help, You Created The Game</p>
+        <p class="has-text-centered has-text-danger has-text-weight-bold">You Shouldn't Need Help, You Created The Game</p>
       </div>
     </div>
   
@@ -43,8 +43,12 @@
 <div id="container" class="has-text-centered">
     <button id="button" class="button has-background-grey is-small" onclick="cheatCode(), listen()">Cheat</button>
 </div>
-<div class="has-text-centered">
-    <button class="button js-modal-trigger has-background-grey is-small" data-target="modal-js-example">
+<div>
+    <p id="cheat" class="has-text-warning has-text-centered is-hidden" >CHEAT ACTIVATED! The paddle will now follow the balls exact movement.</p>
+    <p id="cheat1" class="has-text-danger has-text-centered is-hidden" >Note: You are still able to control the paddle with the mouse so beware!</p>
+</div>
+<div class="has-text-centered ">
+    <button class="button js-modal-trigger has-background-grey has-text-weight-bold is-small  " data-target="modal-js-example">
        Need Help?
       </button>
 </div>

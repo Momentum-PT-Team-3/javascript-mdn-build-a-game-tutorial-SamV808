@@ -285,13 +285,10 @@ function cheatCode() {
     isCheating = true
 }
 let listen = event => {
-    let p = document.createElement('p');
-    let p2 = document.createElement("p");
-    p.innerText = "CHEAT ACTIVATED! The paddle will now follow the balls exact movement.";
-    p2.innerText = "Note: You are still able to control the paddle with the mouse so beware!";
-    document.querySelector('#container').appendChild(p);
-    document.querySelector("#container").appendChild(p2);
-    document.querySelector("#container").style.color = "yellow";
+    document.getElementById("cheat");
+    document.getElementById("cheat1");
+    cheat.classList.remove("is-hidden");
+    cheat1.classList.remove("is-hidden");
 }
 
 //========================================================================================================================================================================
