@@ -28,6 +28,24 @@ my_gradient.addColorStop(0, "#141414");
 my_gradient.addColorStop(1, "red");
 
 
+function getCookie(name) {
+let cookieValue = null;
+if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+        }
+    }
+}
+return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+
 const scoreURL = "/api/score/new"
 let scoreForm = document.querySelector("#score-form")
 
@@ -35,7 +53,6 @@ scoreForm.addEventListener("submit", function (event) {
     event.preventDefault()
     console.log(event.target)
     formData = new FormData(scoreForm)
-    // let score = 2
     formData.append("score", score)
     fetch(scoreURL, {
         method: "POST",
@@ -94,7 +111,8 @@ function keyUpHandler(e) {
 
 function mouseMoveHandler(e) {
     let relativeX = e.clientX - canvas.offsetLeft;
-    if (relativeX > 0 && relativeX < canvas.width) {
+    // if (relativeX > 0 && relativeX < canvas.width)
+    if (relativeX > paddleWidth / 2 && relativeX < canvas.width - paddleWidth / 2) {
         paddleX = relativeX - paddleWidth / 2;
     }
 }
@@ -340,22 +358,34 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 //========================================================================================================================================================================
 
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
+let leaderBoard = document.querySelector("#leader-board")
+let leaderURL = "api/leaderboard"
+
+fetch(leaderURL, {
+    method: "GET",
+    credentials: "same-origin", 
+    headers: {
+        "Accept": "application/json",
+        "X-Request-With": "XMLHttpRequest",
+        "X-CSRFToken": csrftoken,
+    },
+})
+    .then(response => {
+        return response.json()
+    })
+    .then(leaderArray => {
+        for (let score of leaderArray){
+            let playerScore = document.createElement("li")
+            console.log(score)
+            console.log(leaderBoard)    
+            playerScore.innerText = `${score.fields.player} | ${score.fields.points}`
+            leaderBoard.appendChild(playerScore)
         }
-    }
-    return cookieValue;
-}
-const csrftoken = getCookie('csrftoken');
+    })
+
+
+
+
 
 
    

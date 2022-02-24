@@ -20,47 +20,52 @@
 </header>
 
 <body>
-<canvas class="has-background-white" id="myCanvas" width="600" height="300"></canvas>
-<h1 class="title has-text-centered has-text-white">Instructions:</h1>
-<p class="has-text-centered has-text-white">
-     Break Every Brick To Win
-     <br>Don't Lose :)
-     <br>You Only Get a Certain Amount Of Lives Make Them Count
-</p>
+    <canvas class="has-background-white" id="myCanvas" width="600" height="300"></canvas>
+    <h1 class="title has-text-centered has-text-white">Instructions:</h1>
+    <p class="has-text-centered has-text-white">
+        Break Every Brick To Win
+        <br>Don't Lose :)
+        <br>You Only Get A Certain Amount Of Lives Make Them Count
+    </p>
+    
+    <table id="leader-board" class="table has-background-black-ter">
+        <thead>Leader Board</thead>
 
-<div id="modal-js-example" class="modal">
-    <div class="modal-background"></div>
-  
-    <div class="modal-content">
-      <div class="box has-background-grey">
-        <p class="has-text-centered has-text-danger has-text-weight-bold">You Shouldn't Need Help, You Created The Game</p>
-      </div>
+    </table>
+    
+    <div id="modal-js-example" class="modal">
+        <div class="modal-background"></div>
+        
+        <div class="modal-content">
+        <div class="box has-background-grey">
+            <p class="has-text-centered has-text-danger has-text-weight-bold">You Shouldn't Need Help, You Created The Game</p>
+        </div>
+        </div>
+    
+        <button class="modal-close is-large" aria-label="close"></button>
     </div>
-  
-    <button class="modal-close is-large" aria-label="close"></button>
-  </div>
-  
-<div id="container" class="has-text-centered">
-    <button id="button" class="button has-background-grey is-small" onclick="cheatCode(), listen()">Cheat</button>
-</div>
-<div>
-    <p id="cheat" class="has-text-warning has-text-centered is-hidden" >CHEAT ACTIVATED! The paddle will now follow the balls exact movement.</p>
-    <p id="cheat1" class="has-text-danger has-text-centered is-hidden" >Note: You are still able to control the paddle with the mouse so beware!</p>
-</div>
-<div class="has-text-centered ">
-    <button class="button js-modal-trigger has-background-grey has-text-weight-bold is-small  " data-target="modal-js-example">
-       Need Help?
-      </button>
-</div>
+    
+    <div id="container" class="has-text-centered">
+        <button id="button" class="button has-background-grey has-text-weight-bold is-small" onclick="cheatCode(), listen()">Cheat</button>
+    </div>
+    <div>
+        <p id="cheat" class="has-text-warning has-text-centered is-hidden" >CHEAT ACTIVATED! The Paddle Will Now Follow The Ball's Exact Movement.</p>
+        <p id="cheat1" class="has-text-danger has-text-centered is-hidden" >Note: You Are Still Able To Control The Paddle With The Mouse So Beware!</p>
+    </div>
+    <div class="has-text-centered ">
+        <button class="button js-modal-trigger has-background-grey has-text-weight-bold is-small  " data-target="modal-js-example">
+        Need Help?
+        </button>
+    </div>
 
-<div class="box has-background-black-ter">
-    <p class="has-text-centered has-text-white">Score Entry</p>
-    <form class="has-text-centered is-hidden" id="score-form" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ score_form.as_p }}
-        <button type="submit" class="button is-small save btn btn-seceondary has-text-centered">Submit</button>
-    </form>
+    <div class="box has-background-black-ter">
+        <p class="has-text-centered has-text-white has-text-weight-bold">Score Entry</p>
+        <form class="has-text-centered is-hidden" id="score-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ score_form.as_p }}
+            <button type="submit" class="button is-small save btn btn-seceondary has-text-centered">Submit</button>
+        </form>
 
-</div>
+    </div>
 </body>
 </html>
